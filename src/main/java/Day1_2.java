@@ -1,10 +1,8 @@
 import io.vavr.collection.List;
-import io.vavr.control.Try;
+import utils.FileUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class Day1_2 {
 
@@ -31,20 +29,8 @@ public class Day1_2 {
                 .intValue();
     }
 
-    public static List<String> readFile(String fileName) {
-        java.util.List<String> list = Try.of(() -> Files.readAllLines(Path.of(fileName)))
-                .fold(
-                    t -> {
-                        throw new IllegalArgumentException(String.format("missing file %s", fileName));
-                        },
-                    s -> s
-            );
-
-        return List.ofAll(list);
-    }
-
     public static void main(String args[]) {
-        Integer totalFuell = new Day1_2().calculateFuel(readFile("src/main/resources/day1.txt"));
+        Integer totalFuell = new Day1_2().calculateFuel(FileUtils.readFile("src/main/resources/day1.txt"));
         System.out.println(totalFuell);
     }
 }
