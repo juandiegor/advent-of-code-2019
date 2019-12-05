@@ -1,3 +1,4 @@
+import day2.Day2;
 import io.vavr.collection.Array;
 import io.vavr.collection.List;
 import org.junit.Test;

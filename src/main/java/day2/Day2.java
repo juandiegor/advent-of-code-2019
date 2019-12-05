@@ -1,3 +1,5 @@
+package day2;
+
 import io.vavr.collection.Array;
 import io.vavr.collection.List;
 import io.vavr.control.Option;

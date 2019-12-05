@@ -1,3 +1,5 @@
+package day1;
+
 import io.vavr.collection.List;
 import utils.FileUtils;
 
