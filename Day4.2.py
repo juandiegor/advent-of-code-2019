@@ -2,21 +2,19 @@
 def at_least_two_exact_consecutive(number):
     number = str(number)
     pos = 0
+    at_least_a_pair = False
+    banned = []
     for digit in number:
-        if pos < len(number) - 2 and number[pos+1] == digit and number[pos+2] != digit:
-            return True, number
-        pos += 1
-    return False, None
+        if digit not in banned and pos < len(number) - 2 and number[pos+1] == digit and digit not in number[pos+2:]:
+            at_least_a_pair = True
+        else:
+            if pos < len(number) - 2:
+                banned.append(digit)
 
-# FIXME this is not working. need to find a way to group pairs
-def no_more_than_two_consecutive(number, consec):
-    number = str(number)
-    pos = 0
-    for digit in number:
-        if pos < len(number) - 2 and number[pos+1] == digit and number[pos+2] == digit:
-            return False
+        if digit not in banned and pos == len(number) - 2 and number[pos+1] == digit:
+            at_least_a_pair = True
         pos += 1
-    return True
+    return at_least_a_pair
 
 
 def all_numbers_same_or_increasing(number):
@@ -36,10 +34,9 @@ def size_6(number):
 def find_passwords(min_n, max_n):
     count = 0
     for i in range(min_n, max_n):
-        at_most_two, _ = at_least_two_exact_consecutive(i)
-        if at_most_two and all_numbers_same_or_increasing(i) and size_6(i):
+        if all_numbers_same_or_increasing(i) and at_least_two_exact_consecutive(i):
             count += 1
     return count
 
 
-print(find_passwords(111111, 111112))
+print(find_passwords(402328, 864247))
