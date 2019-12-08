@@ -33,7 +33,7 @@ public class Day2 {
                 program[1] = noun;
                 program[2] = verb;
                 System.out.println(String.format("using program %s", Arrays.asList(program)));
-                Integer[] output = new Day2().runProgram(program);
+                Integer[] output = runProgram(program);
                 if (output[0] == 19690720) {
                     return Option.of(100*noun + verb);
                 }
